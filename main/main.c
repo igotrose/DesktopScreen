@@ -1,35 +1,36 @@
-
 #include <stdio.h>
-#include "sdkconfig.h"
+#include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "esp_system.h"
-#include "esp_spi_flash.h"
 
-#define CHIP_NAME "ESP32"
+static const char *TAG = "LogDemo"; 
 
-void app_main(void)
+uint32_t custom_timestamp(void) 
 {
-    printf("Hello world!\n");
+    return xTaskGetTickCount() * portTICK_PERIOD_MS;
+}
 
-    /* Print chip information */
-    esp_chip_info_t chip_info;
-    esp_chip_info(&chip_info);
-    printf("This is %s chip with %d CPU core(s), WiFi%s%s, ",
-            CHIP_NAME,
-            chip_info.cores,
-            (chip_info.features & CHIP_FEATURE_BT) ? "/BT" : "",
-            (chip_info.features & CHIP_FEATURE_BLE) ? "/BLE" : "");
+int custom_log_handler(const char *fmt, va_list args) 
+{
+    return vprintf(fmt, args);
+}
 
-    printf("silicon revision %d, ", chip_info.revision);
+void app_main(void) {
+    esp_log_set_vprintf(custom_log_handler);
 
-    printf("%dMB %s flash\n", spi_flash_get_chip_size() / (1024 * 1024),
-            (chip_info.features & CHIP_FEATURE_EMB_FLASH) ? "embedded" : "external");
+    esp_log_level_set(TAG, ESP_LOG_DEBUG);
 
-    printf("Minimum free heap size: %d bytes\n", esp_get_minimum_free_heap_size());
+    ESP_LOGE(TAG, "this is error log");
+    ESP_LOGW(TAG, "this is warning log");
+    ESP_LOGI(TAG, "this is info log");
+    ESP_LOGD(TAG, "this is debug log");
+    ESP_LOGV(TAG, "this is verbose log");
 
-    while(1){
-        printf("system run ...\n");
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    for (int i = 0; i < 5; i++) 
+    {
+        ESP_LOGI(TAG, "count %d", i);
+        vTaskDelay(pdMS_TO_TICKS(1000)); 
     }
+
+    ESP_LOGI(TAG, "Log Demo End");
 }
