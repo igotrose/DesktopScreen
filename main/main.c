@@ -8,18 +8,20 @@
 #include "ds_timer.h"
 #include "ds_spiffs.h"
 #include "ds_nvs.h"
+#include "ds_gpio.h"
 
 
 static const char *TAG = "ESP32"; 
 
 void app_main(void) 
 {
-    ESP_LOGI( TAG, "version 04\n" );
+    ESP_LOGI( TAG, "version 06\n" );
     ESP_LOGI( TAG, "Start...\n" );
     
     ds_timer_init();
     init_spiffs();
     ds_nvs_init();
+    ds_gpio_init();
 
     ds_nvs_save_wifi_info("igotu", "aaggdd@147963");
     if (ds_nvs_read_wifi_info() == NVS_WIFO_INFO_HAS_SAVE)
