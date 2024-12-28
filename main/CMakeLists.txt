@@ -1,8 +1,11 @@
 idf_component_register(SRCS 
                         "main.c"
+                        "src/ds_system_data.c"
                         "src/hal/ds_timer.c"
                         "src/fs/ds_spiffs.c"
+                        "src/hal/ds_nvs.c"
                     INCLUDE_DIRS 
                         "."
+                        "inc"
                         "inc/hal"
                         "inc/fs")
