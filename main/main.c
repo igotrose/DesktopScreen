@@ -7,11 +7,11 @@
 
 #include "ds_timer.h"
 
-static const char *TAG = "TimerQueueDemo"; 
+static const char *TAG = "ESP32"; 
 
 void app_main(void) 
 {
-    ESP_LOGI(TAG, "version 02\n");
+    ESP_LOGI(TAG, "version 03\n");
     ESP_LOGI(TAG, "Start...\n");
     
     ds_timer_init();

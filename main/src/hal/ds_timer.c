@@ -32,6 +32,9 @@ timer_event_t g_timer_event;
 QueueHandle_t timer_queue;
 // QueueHandle_t  ui_update_timer_queue;
 
+static const char *TAG = "TIMER & QUEUE"; 
+
+
 void IRAM_ATTR timer_group0_isr(void *para)
 {
     int timer_idx = ( int ) para;
@@ -80,7 +83,7 @@ static void timer_event_task( void * pvParameters )
         if (g_timer_event.timer_second_count >= 100)
         {
             g_timer_event.timer_second_count = 0;
-            ESP_LOGI("TQ", "timer running\n");
+            ESP_LOGI(TAG, "timer running\n");
         }
     }
     
