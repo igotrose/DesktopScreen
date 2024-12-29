@@ -16,7 +16,7 @@ static const char *TAG = "ESP32";
 
 void app_main(void) 
 {
-    ESP_LOGI( TAG, "version 06\n" );
+    ESP_LOGI( TAG, "version 08\n" );
     ESP_LOGI( TAG, "Start...\n" );
     
     ds_timer_init();
@@ -46,6 +46,6 @@ void app_main(void)
         ESP_LOGI( TAG, "system running...\n" );
         vTaskDelay( pdMS_TO_TICKS( 1000 ) ); 
     }
- 
+    
     ESP_LOGI( TAG, "End...\n" );
 }
