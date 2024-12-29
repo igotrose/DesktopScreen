@@ -7,9 +7,12 @@ idf_component_register(SRCS
                         "src/hal/ds_gpio.c"
                         "src/hal/ds_iic.c"
                         "src/driver/ds_ft6336.c"
+                        "src/hal/ds_spi.c"
+                        "src/driver/ds_screen.c"
                     INCLUDE_DIRS 
                         "."
                         "inc"
                         "inc/hal"
                         "inc/fs"
-                        "inc/driver")
+                        "inc/driver"
+                        "inc/data")

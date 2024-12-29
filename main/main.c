@@ -10,6 +10,7 @@
 #include "ds_nvs.h"
 #include "ds_gpio.h"
 #include "ds_ft6336.h"
+#include "ds_screen.h"
 
 static const char *TAG = "ESP32"; 
 
@@ -34,7 +35,10 @@ void app_main(void)
     ds_gpio_init();
     init_ft6336();
     TP_POSITION_T position;
-    
+
+    init_screen_interface();
+    ds_screen_clean_white();
+        
     while (1) 
     {
         get_ft6336_touch_sta(&position);
