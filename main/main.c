@@ -18,7 +18,7 @@ static const char *TAG = "ESP32";
 
 void app_main(void) 
 {
-    ESP_LOGI( TAG, "version 06\n" );
+    ESP_LOGI( TAG, "version 09\n" );
     ESP_LOGI( TAG, "Start...\n" );
     
     ds_timer_init();
@@ -27,7 +27,6 @@ void app_main(void)
     ds_spiffs_test();
 
     ds_nvs_init();
-
     ds_nvs_save_wifi_info("igotu", "aaggdd@147963");
     if (ds_nvs_read_wifi_info() == NVS_WIFO_INFO_HAS_SAVE)
     {
@@ -40,6 +39,7 @@ void app_main(void)
 
     init_screen_interface();
     ds_screen_clean_white();
+    ds_wifi_ap_start();
         
     while (1) 
     {
