@@ -12,6 +12,8 @@
 #include "ds_ft6336.h"
 #include "ds_screen.h"
 
+#include "ds_wifi_ap.h"
+
 static const char *TAG = "ESP32"; 
 
 void app_main(void) 

@@ -9,10 +9,12 @@ idf_component_register(SRCS
                         "src/driver/ds_ft6336.c"
                         "src/hal/ds_spi.c"
                         "src/driver/ds_screen.c"
+                        "src/net/ds_wifi_ap.c"
                     INCLUDE_DIRS 
                         "."
                         "inc"
                         "inc/hal"
                         "inc/fs"
                         "inc/driver"
-                        "inc/data")
+                        "inc/data"
+                        "inc/net")
